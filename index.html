@@ -6,32 +6,102 @@
 		<title>Лазерные технологии | Документация</title>
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/styles.css?v=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
 		<div class="container">
 			<h1>Документация по лазерным технологиям</h1>
 			<div class="accordion">
+				<!-- Аккордеон Лазерная чистка -->
 				<div class="accordion-item">
 					<div class="accordion-header">Лазерная чистка</div>
 					<div class="accordion-content">
-						<!-- Кнопка открывает реальный PDF-файл -->
-						<button
-							class="pdf-btn"
-							data-url="docs/SA10-2000H-136_MaintenanceManual_EN.pdf"
-						>
-							Скачать PDF (чистка)
-						</button>
+						<!-- Вложенный аккордеон для чистки -->
+						<div class="sub-accordion">
+							<div class="sub-accordion-item">
+								<div class="sub-accordion-header">Оборудование для чистки</div>
+								<div class="sub-accordion-content">
+									<button
+										class="pdf-btn"
+										data-url="docs/SA10-2000H-136_MaintenanceManual_EN.pdf"
+									>
+										Спецификация оборудования
+									</button>
+									<button
+										class="pdf-btn"
+										data-url="docs/SA10-2000H-136_MaintenanceManual_EN.pdf"
+									>
+										Руководство по эксплуатации
+									</button>
+								</div>
+							</div>
+							<div class="sub-accordion-item">
+								<div class="sub-accordion-header">Технология чистки</div>
+								<div class="sub-accordion-content">
+									<button
+										class="pdf-btn"
+										data-url="docs/SA10-2000H-136_MaintenanceManual_EN.pdf"
+									>
+										Методика очистки
+									</button>
+									<button
+										class="pdf-btn"
+										data-url="docs/SA10-2000H-136_MaintenanceManual_EN.pdf"
+									>
+										Параметры процесса
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
+
+				<!-- Аккордеон Лазерная сварка -->
 				<div class="accordion-item">
 					<div class="accordion-header">Лазерная сварка</div>
 					<div class="accordion-content">
-						<button
-							class="pdf-btn"
-							data-url="docs/SA10-2000H-136_MaintenanceManual_EN.pdf"
-						>
-							Скачать PDF (сварка)
-						</button>
+						<!-- Вложенный аккордеон для сварки -->
+						<div class="sub-accordion">
+							<div class="sub-accordion-item">
+								<div class="sub-accordion-header">Режимы сварки</div>
+								<div class="sub-accordion-content">
+									<button
+										class="pdf-btn"
+										data-url="docs/SA10-2000H-136_MaintenanceManual_EN.pdf"
+									>
+										Таблица режимов
+									</button>
+									<button
+										class="pdf-btn"
+										data-url="docs/SA10-2000H-136_MaintenanceManual_EN.pdf"
+									>
+										Рекомендации по выбору
+									</button>
+								</div>
+							</div>
+							<div class="sub-accordion-item">
+								<div class="sub-accordion-header">Материалы</div>
+								<div class="sub-accordion-content">
+									<button
+										class="pdf-btn"
+										data-url="docs/SA10-2000H-136_MaintenanceManual_EN.pdf"
+									>
+										Свариваемые материалы
+									</button>
+									<button
+										class="pdf-btn"
+										data-url="docs/SA10-2000H-136_MaintenanceManual_EN.pdf"
+									>
+										Подготовка кромок
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

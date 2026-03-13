@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-	// Аккордеон
-	const headers = document.querySelectorAll('.accordion-header');
-	headers.forEach((header) => {
+	// Основной аккордеон
+	const mainHeaders = document.querySelectorAll('.accordion-header');
+	mainHeaders.forEach((header) => {
 		header.addEventListener('click', function () {
 			const content = this.nextElementSibling;
-			headers.forEach((otherHeader) => {
+			// Закрыть другие основные
+			mainHeaders.forEach((otherHeader) => {
 				if (otherHeader !== header) {
 					otherHeader.nextElementSibling.classList.remove('active');
 				}
@@ -13,15 +14,35 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	});
 
-	// Открытие PDF по кнопке
+	// Вложенный аккордеон
+	const subHeaders = document.querySelectorAll('.sub-accordion-header');
+	subHeaders.forEach((header) => {
+		header.addEventListener('click', function (e) {
+			e.stopPropagation(); // не допустить всплытия до основного
+			const content = this.nextElementSibling;
+			// Закрыть другие вложенные внутри того же подаккордеона
+			const parentSubAccordion = this.closest('.sub-accordion');
+			if (parentSubAccordion) {
+				const siblings = parentSubAccordion.querySelectorAll(
+					'.sub-accordion-header',
+				);
+				siblings.forEach((sib) => {
+					if (sib !== header) {
+						sib.nextElementSibling.classList.remove('active');
+					}
+				});
+			}
+			content.classList.toggle('active');
+		});
+	});
+
+	// Кнопки PDF
 	const pdfButtons = document.querySelectorAll('.pdf-btn');
 	pdfButtons.forEach((btn) => {
 		btn.addEventListener('click', function (e) {
-			e.stopPropagation(); // не закрывать аккордеон
-			const url = this.dataset.url; // ссылка на PDF
-			if (url) {
-				window.open(url, '_blank'); // открыть в новой вкладке
-			}
+			e.stopPropagation();
+			const url = this.dataset.url;
+			if (url) window.open(url, '_blank');
 		});
 	});
 });
