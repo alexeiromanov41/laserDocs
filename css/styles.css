@@ -1,105 +1,186 @@
-* {
-	margin: 0;
-	padding: 0;
+/* main.css — стилизация аккордеона в стиле вашего примера */
+*,
+*::before,
+*::after {
 	box-sizing: border-box;
 }
 
+:root {
+	--dark: #1e1e1e;
+	--gray-dark: #2d2d2d;
+	--gray: #6c757d;
+	--gray-light: #e9ecef;
+	--accent: #f39c12; /* оранжевый для акцентов */
+	--accent-hover: #e67e22;
+	--blue: #00bfff; /* голубой для кнопок */
+	--blue-hover: #009acd;
+	--white: #ffffff;
+	--shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	--border-radius: 12px;
+}
+
 body {
-	font-family: Arial, sans-serif;
-	background-color: #ffffff;
-	color: #000000;
-	line-height: 1.6;
+	font-family: 'Montserrat', 'Roboto', sans-serif;
+	background-color: #f4f7f9;
+	color: #333;
+	line-height: 1.5;
+	margin: 0;
 	padding: 20px;
 }
 
 .container {
 	max-width: 800px;
 	margin: 0 auto;
+	padding: 0 15px;
+	width: 100%;
 }
 
 h1 {
-	text-align: center;
-	margin-bottom: 30px;
-	font-size: 2rem;
-	color: #000;
+	font-size: 24px;
+	font-weight: 600;
+	margin: 0 0 30px;
+	color: var(--dark);
+	border-left: 4px solid var(--accent);
+	padding-left: 15px;
 }
 
+/* Аккордеон как карточка */
 .accordion {
-	border: 2px solid #ff8c00;
-	border-radius: 8px;
-	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
 .accordion-item {
-	border-bottom: 1px solid #ff8c00;
+	background: var(--white);
+	border-radius: var(--border-radius);
+	padding: 20px;
+	box-shadow: var(--shadow);
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	width: 100%;
 }
 
-.accordion-item:last-child {
-	border-bottom: none;
+.accordion-item:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Заголовок аккордеона (кликабельный) */
 .accordion-header {
-	background-color: #ff8c00;
-	color: #ffffff;
-	padding: 15px 20px;
-	font-size: 1.2rem;
-	font-weight: bold;
+	font-size: 20px;
+	font-weight: 600;
+	margin: 0 0 10px;
+	color: var(--dark);
+	border-bottom: 2px solid var(--accent);
+	padding-bottom: 10px;
 	cursor: pointer;
-	transition: background-color 0.3s ease;
+	transition: color 0.2s;
 }
 
 .accordion-header:hover {
-	background-color: #e07b00;
+	color: var(--accent);
 }
 
+/* Содержимое аккордеона (скрыто по умолчанию) */
 .accordion-content {
 	display: none;
-	background-color: #ffffff;
-	padding: 20px;
+	margin-top: 15px;
 }
 
 .accordion-content.active {
 	display: block;
 }
 
+/* Анимация пульсации для кнопки */
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+	50% {
+		transform: scale(1.02);
+		box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+	}
+	100% {
+		transform: scale(1);
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+}
+
+/* Кнопка (голубая) */
 .pdf-btn {
-	background-color: #00bfff;
-	color: #000000;
+	background-color: var(--blue);
+	color: var(--white);
 	border: none;
-	padding: 12px 24px;
-	font-size: 1rem;
-	border-radius: 5px;
+	padding: 14px 25px;
+	border-radius: 40px;
+	font-size: 16px;
+	font-weight: 600;
 	cursor: pointer;
-	transition: background-color 0.3s ease;
 	width: 100%;
-	max-width: 300px;
-	display: block;
-	margin: 0 auto;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	animation: pulse 2s infinite ease-in-out;
+	transition: background-color 0.2s;
 }
 
 .pdf-btn:hover {
-	background-color: #009acd;
+	animation: none;
+	background-color: var(--blue-hover);
+	transform: scale(1.02);
+	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Адаптивность */
-@media (max-width: 600px) {
+.pdf-btn:active {
+	animation: none;
+	transform: scale(0.98);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	background-color: var(--blue-hover);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+	.container {
+		padding: 0 10px;
+	}
+
 	h1 {
-		font-size: 1.5rem;
+		font-size: 20px;
 		margin-bottom: 20px;
 	}
 
-	.accordion-header {
-		padding: 12px 15px;
-		font-size: 1rem;
-	}
-
-	.accordion-content {
+	.accordion-item {
 		padding: 15px;
 	}
 
+	.accordion-header {
+		font-size: 18px;
+	}
+
 	.pdf-btn {
-		padding: 10px 20px;
-		font-size: 0.9rem;
-		max-width: 250px;
+		padding: 12px 20px;
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 480px) {
+	h1 {
+		font-size: 18px;
+	}
+
+	.accordion-item {
+		padding: 12px;
+	}
+
+	.accordion-header {
+		font-size: 16px;
+	}
+
+	.pdf-btn {
+		padding: 10px 15px;
+		font-size: 14px;
 	}
 }
